@@ -77,9 +77,12 @@ execute_query(query_5, "Find complexes that have more than one venue")
 
 # ✅ List venues grouped by country
 query_6 = """
-SELECT country_name, COUNT(venue_id) AS total_venues
-FROM venues
-GROUP BY country_name;
+SELECT 
+    country_name, 
+    COUNT(venue_name) AS total_venue, 
+    JSON_ARRAYAGG(venue_name) AS list_of_venues 
+FROM venues 
+GROUP BY country_name;;
 """
 execute_query(query_6, "List venues grouped by country")
 
